@@ -4,6 +4,7 @@ const toCurrency = document.getElementById('to-currency');
 const convertBtn = document.getElementById('convert-btn');
 const swapBtn = document.getElementById('swap-currencies');
 const resultDisplay = document.getElementById('conversion-result');
+const conversionResultContainer = document.getElementById('result-display');
 
 // API URL
 const API_URL = 'https://api.frankfurter.app';
@@ -45,7 +46,8 @@ async function convertCurrency() {
 
     if (!amount || !from || !to) {
         console.warn("Missing input data");
-        resultDisplay.textContent = '!! Please enter amount and select currencies !!';
+        resultDisplay.textContent = ' Invalid input, please try again';
+        conversionResultContainer.style.display = 'block';
         return;
     }
 
@@ -58,9 +60,11 @@ async function convertCurrency() {
         console.log("Calculated rate:", rate);
 
         resultDisplay.textContent = `${from} ${amount} = ${to} ${rate}`;
+        conversionResultContainer.style.display = 'block';
     } catch (error) {
         console.error('Error concerting currency: ', error);
-        resultDisplay.textContent = '!! Conversion failed, please try again !!';
+        resultDisplay.textContent = 'Conversion failed, please try again';
+        conversionResultContainer.style.display = 'block';
     }
 }
 
