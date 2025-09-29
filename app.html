@@ -6,11 +6,18 @@
     <title>Currency Converter</title>
     <link rel="stylesheet" href="style.css">
     <script src="src/script.js" defer></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
 </head>
-<body>
-    <h2>Currency Coverter App</h2>
 
+<body>
     <div class="currency-converter-card "id="currency-converter-container">
+
+        <div class="header" id="header-container">
+            <span class="material-symbols-outlined">currency_exchange</span>
+            <h2>Currency Coverter App</h2>
+        </div>
+
         <!--- Amount input-->
         <div class="conversion-input" id="amount-section">
             <label for="amount">Amount</label>
@@ -21,32 +28,33 @@
         <div class="currency-selection" id="currency-selectors">
             
             <!--- From Currency -->
-            <div class="convert-from-group">
+            <div class="convert-group">
                 <label for="from-currency">From</label>
                 <select class="currency-dropdown" id="from-currency" aria-label="Convert from">
-                    <option value="" disabled selected>Currency options</option>
+                    <option value="" disabled selected>Currency select</option>
                 </select>
             </div>
 
             <!--- Swap convert button -->
-            <button class="swapBtn" id="swap-currencies" type="button" aria-label="Swap currencies">///swap///</button>
+            <button class="swap-button" id="swap-currencies" type="button" aria-label="Swap currencies">
+                <span class="material-symbols-outlined">swap_horiz</span>
+            </button>
 
             <!--- To Currency -->
-            <div class="convert-to-group">
+            <div class="convert-group">
                 <label for="to-currency">To</label>
                 <select class="currency-dropdown" id="to-currency" aria-label="Convert to">
-                    <option value="" disabled selected>Currency options</option>
+                    <option value="" disabled selected>Select currency</option>
                 </select>
             </div>
         </div>
 
-        <button type="button" id="convert-btn" class="convert-button">Get Exchange Rate</button>
-
-        <!-- Convert Button -->
+        <!-- Conversion Result -->
         <div class="conversion-result-container" id="result-display">
-            <span id="conversion-result"></span>
+            <span id="conversion-result">test</span>
         </div>
+
+        <button type="button" id="convert-btn" class="convert-button">Get Exchange Rate</button>
     </div>
-    
 </body>
 </html>
