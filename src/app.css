@@ -186,7 +186,6 @@ body {
     transform: translateY(-2px);
 }
 
-
 @keyframes gradient-animation {
     0% {
       background-position: 0% 0%;
