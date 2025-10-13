@@ -1,8 +1,6 @@
-// script.js
 document.addEventListener('DOMContentLoaded', function() {
   // Fade-in animation on scroll
   const fadeElements = document.querySelectorAll('.fade-in');
-  
   const fadeInObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -11,27 +9,30 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }, { threshold: 0.1 });
   
-  fadeElements.forEach(el => {
-    fadeInObserver.observe(el);
-  });
+  fadeElements.forEach(el => fadeInObserver.observe(el));
   
-  // Navigation indicator
+  // Navigation
   const navLinks = document.querySelectorAll('.nav-link');
   const navIndicator = document.querySelector('.nav-indicator');
+  const scrollContainer = document.querySelector('.horizontal-scroll');
+  
+  if (!scrollContainer) {
+    console.error('Scroll container not found');
+    return;
+  }
   
   function updateNavIndicator() {
     const sections = document.querySelectorAll('section');
     let currentSection = '';
-    const scrollContainer = document.querySelector('.horizontal-scroll');
     const containerScrollX = scrollContainer.scrollLeft;
     
     sections.forEach(section => {
       const sectionTop = section.offsetLeft;
       const sectionWidth = section.offsetWidth;
       if (containerScrollX >= sectionTop - (sectionWidth / 3)) {
-      currentSection = section.getAttribute('id');
-    }
-  });
+        currentSection = section.getAttribute('id');
+      }
+    });
     
     navLinks.forEach(link => {
       link.classList.remove('active');
@@ -48,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   updateNavIndicator();
-  document.querySelector('.horizontal-scroll').addEventListener('scroll', updateNavIndicator);
+  scrollContainer.addEventListener('scroll', updateNavIndicator);
   
   // Smooth scrolling for navigation links
   navLinks.forEach(link => {
@@ -58,13 +59,12 @@ document.addEventListener('DOMContentLoaded', function() {
       const targetSection = document.querySelector(targetId);
       
       if (targetSection) {
-        const scrollContainer = document.querySelector('.horizontal-scroll');
         const targetLeft = targetSection.offsetLeft;
-        
         scrollContainer.scrollTo({
           left: targetLeft,
           behavior: 'smooth'
         });
+        window.history.pushState(null, null, targetId);
       }
     });
   });

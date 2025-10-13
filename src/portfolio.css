@@ -1,17 +1,18 @@
-/* styles.css */
 :root {
-  --blue-50: #eff6ff;
   --blue-100: #dbeafe;
   --blue-500: #3b82f6;
   --blue-600: #2563eb;
   --blue-700: #1d4ed8;
   --blue-900: #1e3a8a;
+  --green-100: #dcfce7;
   --green-500: #10b981;
   --green-600: #059669;
   --green-700: #047857;
+  --purple-100: #f3e8ff;
   --purple-500: #8b5cf6;
   --purple-600: #7c3aed;
   --purple-700: #6d28d9;
+  --red-100: #fee2e2;
   --red-500: #ef4444;
   --red-600: #dc2626;
   --red-700: #b91c1c;
@@ -139,6 +140,10 @@ body {
   text-align: center;
 }
 
+.about-section .container { 
+  margin-top: -50px;
+}
+
 .title {
   font-size: 3.75rem;
   font-weight: 700;
@@ -146,24 +151,22 @@ body {
 }
 
 .subtitle {
-  font-size: 1.5rem;
+  font-size: 1.30rem;
   font-weight: 700;
   margin-bottom: 1.25rem; 
-  max-width: none; 
 }
 
 .description {
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   margin-bottom: 1.5rem;
-  max-width: none;
+  max-width: 700px;
   margin-left: auto;
   margin-right: auto;
-  max-width: 550px; 
 }
 
 .button-group {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 16px;
   justify-content: center;
   margin-top: 0.625rem; 
@@ -255,22 +258,22 @@ body {
   background: linear-gradient(to bottom right, var(--gray-100), var(--gray-200));
 }
 
+.team-section .container {
+  margin-top: -50px;
+}
+
 .section-title {
   font-size: 2.25rem;
   font-weight: 700;
   text-align: center;
-  margin-bottom: 48px;
+  margin-bottom: 24px;
 }
 
 .team-grid {
   display: grid;
   gap: 32px;
-  /* CHANGE: Use a more flexible grid for small screens */
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  justify-content: center; /* Center cards horizontally if they don't fill the space */
-  max-width: 1200px; /* Optional: Constrain the grid width */
-  margin-left: auto; /* Centers the team grid container */
-  margin-right: auto; /* Centers the team grid container */
+  margin-top: 40px;
 }
 
 .team-card {
@@ -280,6 +283,9 @@ body {
   overflow: hidden;
   transition: all 0.3s;
   transform: translateY(0);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .team-card:hover {
@@ -320,10 +326,9 @@ body {
 
 .card-content {
   padding: 24px;
-  /* START Change: Make card content a flex container */
   display: flex; 
   flex-direction: column;
-  /* END Change */
+  flex-grow: 1;
 }
 
 .member-name {
@@ -341,16 +346,15 @@ body {
 .member-description {
   color: var(--gray-600);
   margin-bottom: 16px;
+  flex-grow: 1;
+  min-height: 4.5rem;
 }
 
 .social-links {
   display: flex;
   gap: 12px;
-  /* CHANGE: Push the links to the bottom of the content area */
   margin-top: auto; 
-  padding-top: 16px; /* Add some space above the links */
-  /* Remove old margin-top: 16px; */
-  /* margin-top: 16px; */
+  padding-top: 16px; 
 }
 
 .social-link {
@@ -371,7 +375,6 @@ body {
   color: var(--gray-900);
 }
 
-/* Ensure the LinkedIn icon uses the blue color */
 .social-links .fa-linkedin {
   color: var(--blue-500);
 }
@@ -386,14 +389,14 @@ body {
 }
 
 #features .container {
-    margin-top: -60px;
+    margin-top: -40px;
 }
 
 .section-description {
   font-size: 1.125rem;
   text-align: center;
-  color: var(--gray-600);
-  margin-bottom: 48px;
+  color: var(--gray-500);
+  margin-bottom: 50px;
   max-width: 42rem;
   margin-left: auto;
   margin-right: auto;
@@ -407,7 +410,7 @@ body {
 
 .feature-card {
   background-color: var(--white);
-  padding: 24px;
+  padding: 16px;
   border-radius: 1rem;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
   transition: all 0.3s;
@@ -420,7 +423,7 @@ body {
 .feature-header {
   display: flex;
   align-items: center;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .feature-icon {
@@ -471,8 +474,25 @@ body {
 }
 
 .cta-section {
-  margin-top: 48px;
+  margin-top: 50px;
   text-align: center;
+}
+
+.cta-section .btn-primary {
+  padding: 18px 40px;
+  font-size: 1.2rem;
+  background: linear-gradient(135deg, var(--blue-500), var(--blue-700));
+  color: var(--white);
+  border: none;
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+  transition: all 0.3s ease;
+  font-weight: 700;
+}
+
+.cta-section .btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(59, 130, 246, 0.4);
+  background: linear-gradient(135deg, var(--blue-600), var(--blue-700));
 }
 
 /* Contact Section */
@@ -480,6 +500,10 @@ body {
   background: linear-gradient(to right, var(--gray-900), var(--gray-700));
   color: var(--white);
   text-align: center;
+}
+
+.contact-section .container {
+  margin-top: -30px;
 }
 
 .contact-grid {
@@ -494,6 +518,16 @@ body {
   padding: 24px;
   border-radius: 1rem;
   backdrop-filter: blur(4px);
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease;
+  display: block;
+}
+
+.contact-card:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
 }
 
 .contact-card i {
@@ -502,15 +536,15 @@ body {
 }
 
 .contact-card:nth-child(1) i {
-  color: var(--blue-400);
+  color: var(--blue-500);
 }
 
 .contact-card:nth-child(2) i {
-  color: var(--green-400);
+  color: var(--green-500);
 }
 
 .contact-card:nth-child(3) i {
-  color: var(--purple-400);
+  color: var(--purple-500);
 }
 
 .contact-title {
@@ -520,19 +554,11 @@ body {
 }
 
 .contact-info {
-  color: var(--blue-200);
-}
-
-.contact-card:nth-child(2) .contact-info {
-  color: var(--green-200);
-}
-
-.contact-card:nth-child(3) .contact-info {
-  color: var(--purple-200);
+  color: var(--gray-200);
 }
 
 .footer {
-  margin-top: 48px;
+  margin-top: 120px;
   padding-top: 24px;
   border-top: 1px solid var(--gray-600);
 }
@@ -554,15 +580,17 @@ body {
 }
 
 /* Responsive Design */
-  @media (min-width: 1024px) {
+@media (min-width: 1024px) {
   .team-grid {
     grid-template-columns: repeat(4, 1fr);
   }
+  
   .title {
     font-size: 3.75rem;
   }
+  
   .subtitle {
-    font-size: 1.875rem;
+    font-size: 1.5em;
   }
 
   .features-grid {
@@ -572,13 +600,10 @@ body {
   .contact-grid {
     grid-template-columns: repeat(3, 1fr);
   }
-}
 
-@media (min-width: 1024px) {
-
-    .button-group {
-        margin-left: auto;
-        margin-right: auto;
-        max-width: fit-content;
-    }
+  .button-group {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: fit-content;
+  }
 }
