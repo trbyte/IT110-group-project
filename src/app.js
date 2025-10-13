@@ -18,8 +18,11 @@ async function loadCurrencies() {
         const data = await res.json();
         console.log("Currencies data:", data);
 
+        // Sort currencies alphabetically
+        const sortedCodes = Object.keys(data).sort();
+
         // Add currencies to dropdowns
-        for (let code in data) {
+        for (let code of sortedCodes) {
             console.log("Adding currency:", code);
             let option1 = new Option(`${code} - ${data[code]}`, code);
             let option2 = new Option(`${code} - ${data[code]}`, code);
