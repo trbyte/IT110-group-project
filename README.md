@@ -1,4 +1,4 @@
-# IT110 Group Project — Currency Converter Web Application (Default: dev)
+# IT110 Group Project — Group Portfolio and Currency Converter Web Application (Default: dev)
 
 ## Project Overview
 
