@@ -1,3 +1,4 @@
+// Get HTML elements
 const amountInput = document.getElementById('amount');
 const fromCurrency = document.getElementById('from-currency');
 const toCurrency = document.getElementById('to-currency');
@@ -9,21 +10,19 @@ const conversionResultContainer = document.getElementById('result-display');
 // API URL
 const API_URL = 'https://api.frankfurter.app';
 
-// Load currencies
+// Loads all currencies into the dropdowns
 async function loadCurrencies() {
     console.log("Loading currencies...");
     try {
+        // Fetch currencies from API
         const res = await fetch(`${API_URL}/currencies`);
-        console.log("Fetch response:", res);
         const data = await res.json();
-        console.log("Currencies data:", data);
 
         // Sort currencies alphabetically
         const sortedCodes = Object.keys(data).sort();
 
         // Add currencies to dropdowns
         for (let code of sortedCodes) {
-            console.log("Adding currency:", code);
             let option1 = new Option(`${code} - ${data[code]}`, code);
             let option2 = new Option(`${code} - ${data[code]}`, code);
 
@@ -35,37 +34,47 @@ async function loadCurrencies() {
         fromCurrency.value = 'USD';
         toCurrency.value = 'PHP';
     } catch (error) {
-        console.error('Error loading currences: ', error);
+        console.error('Error loading currencies: ', error);
+        resultDisplay.textContent = 'Failed to load currencies. Please refresh.';
+        conversionResultContainer.style.display = 'block';
     }
 }
 
 // Handles conversion
 async function convertCurrency() {
     console.log("Convert button clicked");
+    
+    // Get values from user inputs
     const amount = amountInput.value;
     const from = fromCurrency.value;
     const to = toCurrency.value;
-    console.log("Inputs:", { amount, from, to });
 
-    if (!amount || !from || !to) {
-        console.warn("Missing input data");
-        resultDisplay.textContent = ' Invalid input, please try again';
+    // Validates inputs
+    if (!amount || amount <= 0) {
+        resultDisplay.textContent = 'Please enter a valid amount greater than 0.';
         conversionResultContainer.style.display = 'block';
         return;
     }
 
+    if (from === to) {
+        resultDisplay.textContent = 'Please choose two different currencies.';
+        conversionResultContainer.style.display = 'block';
+        return;
+    }
+
+    // Fetch conversion rate
     try {
         const res = await fetch(`${API_URL}/latest?amount=${amount}&from=${from}&to=${to}`);
-        console.log("Conversion fetch response:", res);
         const data = await res.json();
-        console.log("Conversion result data:", data);
+        
+        // Get converted rate
         const rate = data.rates[to];
-        console.log("Calculated rate:", rate);
 
+        // Display result
         resultDisplay.textContent = `${from} ${amount} = ${to} ${rate}`;
         conversionResultContainer.style.display = 'block';
     } catch (error) {
-        console.error('Error concerting currency: ', error);
+        console.error('Error converting currency: ', error);
         resultDisplay.textContent = 'Conversion failed, please try again';
         conversionResultContainer.style.display = 'block';
     }
@@ -82,5 +91,5 @@ function swapCurrencies() {
 convertBtn.addEventListener('click', convertCurrency);
 swapBtn.addEventListener('click', swapCurrencies);
 
-
+// Load currencies when the page starts
 loadCurrencies();
