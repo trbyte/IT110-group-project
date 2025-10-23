@@ -26,7 +26,13 @@ document.addEventListener('DOMContentLoaded', function() {
     console.error('Scroll container not found');
     return;
   }
-  
+
+  // Back button will go back to the last session 
+  window.addEventListener('popstate', function() {
+    const targetSection = document.querySelector(window.location.hash || '#about');
+    if (targetSection) scrollContainer.scrollLeft = targetSection.offsetLeft;
+  });
+
   // Update navigation indicator position and active link
   function updateNavIndicator() {
     const sections = document.querySelectorAll('section');
@@ -55,6 +61,11 @@ document.addEventListener('DOMContentLoaded', function() {
       link.classList.remove('active');
       if (link.getAttribute('href') === `#${currentSection}`) {
         link.classList.add('active');
+
+      // Update URL hash on each section
+      if (currentSection && window.location.hash !== `#${currentSection}`) {
+        history.replaceState(null, null, `#${currentSection}`);
+      }
 
         // Move and resize indicator
         if (!isMobile) {
